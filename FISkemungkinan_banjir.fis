@@ -1,0 +1,59 @@
+[System]
+Name='FISkemungkinan_banjir'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='curah_hujan'
+Range=[0 100]
+NumMFs=3
+MF1='gerimis':'trimf',[0 20 40]
+MF2='sedang':'trimf',[30 53 75]
+MF3='deras':'trimf',[65 83 100]
+
+[Input2]
+Name='intensitas_hujan'
+Range=[0 100]
+NumMFs=4
+MF1='sebentar':'trimf',[0 15 30]
+MF2='lumayanlama':'trimf',[20 40 60]
+MF3='lama':'trimf',[50 70 90]
+MF4='sangatlama':'trimf',[80 90 100]
+
+[Input3]
+Name='debit_air'
+Range=[0 15]
+NumMFs=3
+MF1='rendah':'trimf',[0 3 6]
+MF2='sedang':'trimf',[5 8 11]
+MF3='tinggi':'trimf',[10 12.5 15]
+
+[Output1]
+Name='kemungkinan_banjir'
+Range=[0 1]
+NumMFs=3
+MF1='tidakbanjir':'trimf',[0 0.25 0.5]
+MF2='banjirsedang':'trimf',[0.4 0.6 0.8]
+MF3='banjirbesar':'trimf',[0.6 0.8 1]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 3 1, 1 (1) : 1
+1 4 1, 1 (1) : 1
+2 1 1, 1 (1) : 1
+2 2 2, 1 (1) : 1
+2 3 2, 1 (1) : 1
+2 4 3, 2 (1) : 1
+3 1 1, 1 (1) : 1
+3 2 1, 1 (1) : 1
+3 3 2, 2 (1) : 1
+3 4 3, 3 (1) : 1
